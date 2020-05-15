@@ -20,10 +20,17 @@ export const Container = styled.div`
   display: flex;
   width: 100%;
   height: 100vh;
-  max-width: 768px;
+  max-width: 1024px;
   background-color: ${theme.main};
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     max-height: 85vh;
   }
+`;
+
+export const Main = styled.main`
+  width: calc(100% - 450px);
+  height: 100%;
+  overflow-y: auto;
+  padding: 3rem;
 `;

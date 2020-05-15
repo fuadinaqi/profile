@@ -1,5 +1,6 @@
-import { Wrapper, Helper, Container } from "./style";
+import { Wrapper, Helper, Container, Main } from "./style";
 import Sidebar from "./sections/Sidebar";
+import Photo from "./sections/Photo";
 
 function Layout({ children }) {
   return (
@@ -7,7 +8,8 @@ function Layout({ children }) {
       <Helper>
         <Container>
           <Sidebar />
-          <main>{children}</main>
+          <Photo />
+          <Main>{children}</Main>
         </Container>
       </Helper>
     </Wrapper>

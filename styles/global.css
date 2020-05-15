@@ -5,8 +5,35 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color: #000000;
+  color: #ffffff;
+  scroll-behavior: smooth;
+  scrollbar-color: rgba(69, 69, 69, 0.8) rgba(0, 0, 0, 0.3);
+  scrollbar-width: thin;
+  -moz-scrollbar-width: thin;
+  -ms-scrollbar-width: thin;
 }
 
 * {
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background: none;
+  opacity: 0;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  background: none;
+  opacity: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2.5px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: rgba(69, 69, 69, 0.8);
+  opacity: 0.3;
 }
