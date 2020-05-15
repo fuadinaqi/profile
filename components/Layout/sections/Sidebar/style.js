@@ -5,6 +5,10 @@ export const Container = styled.div`
   width: 50px;
   height: 100%;
   /* box-shadow: 1px 0px 4px 1px #000; */
+
+  /* @media (max-width: 1023px) {
+    width: 100px;
+  } */
 `;
 
 export const MenuBar = styled.div`
