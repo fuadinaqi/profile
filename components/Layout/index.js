@@ -1,9 +1,17 @@
-import styled from "styled-components";
-
-const Container = styled.div``;
+import { Wrapper, Helper, Container } from "./style";
+import Sidebar from "./sections/Sidebar";
 
 function Layout({ children }) {
-  return <Container>{children}</Container>;
+  return (
+    <Wrapper>
+      <Helper>
+        <Container>
+          <Sidebar />
+          <main>{children}</main>
+        </Container>
+      </Helper>
+    </Wrapper>
+  );
 }
 
 export default Layout;
