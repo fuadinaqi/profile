@@ -1,20 +1,17 @@
 import { Container } from "./style";
 import ProgressBar from "components/ui-kit/ProgressBar";
+import { skills } from "./data";
 
 function ProfileSkill() {
   return (
     <Container>
-      <h2>skills</h2>
-      <ProgressBar title="Javascript" percentage={90} />
-      <ProgressBar title="HTML5" percentage={79} />
-      <ProgressBar title="Cascading Style Sheets (CSS)" percentage={83} />
-      <ProgressBar title="React js" percentage={87} />
-      <ProgressBar title="React native" percentage={72} />
-      <ProgressBar title="Vue js" percentage={75} />
-      <ProgressBar title="Node js" percentage={78} />
-      <ProgressBar title="Express js" percentage={71} />
-      <ProgressBar title="MongoDB" percentage={80} />
-      <ProgressBar title="MySQL" percentage={70} />
+      <div className="title">
+        <img width="40px" alt="skill" src="/images/skills.svg" />
+        <h2>skills</h2>
+      </div>
+      {skills.map(({ name, percentage }, i) => (
+        <ProgressBar key={i.toString()} title={name} percentage={percentage} />
+      ))}
     </Container>
   );
 }

@@ -11,6 +11,8 @@ export const Container = styled.div`
 
   > img {
     opacity: 0.4;
+    position: relative;
+    left: -125px;
   }
 
   @media (max-width: 1024px) {
@@ -20,6 +22,11 @@ export const Container = styled.div`
     border-radius: 100%;
     top: 0;
     margin: 0 auto;
+
+    > img {
+      position: unset;
+      left: 0;
+    }
   }
 `;
 
@@ -32,6 +39,10 @@ export const ProfileContainer = styled.div`
   justify-content: center;
   align-items: center;
 
+  > h1 {
+    text-align: center;
+  }
+
   > .text-wrapper {
     padding: 0 1rem;
     background-color: #ffffff;
@@ -39,6 +50,16 @@ export const ProfileContainer = styled.div`
     > h3.primary {
       color: ${theme.primary};
       margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    h3 {
+      font-size: 1rem;
     }
   }
 `;

@@ -16,7 +16,6 @@ function ProfileAbout() {
         Learner. A Full-stack javascript developer who have certified skills in NodeJS, ES5, ES6,
         VueJS, Vuex, ReactJS, React-Native, Redux, RESTful-API NodeJS by Hacktiv8 Indonesia.
       </p>
-      <hr />
     </Container>
   );
 }
