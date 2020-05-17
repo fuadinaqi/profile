@@ -5,7 +5,7 @@ function ProfileAbout() {
     <Container>
       <h1>about me</h1>
       <strong>
-        <em>25 years old</em>
+        <em>{`${new Date().getFullYear() - 1995} years old`}</em>
         <span>/</span>
         <em>Indonesia</em>
         <span>/</span>

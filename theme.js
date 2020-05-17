@@ -3,5 +3,5 @@ export default {
   primary: "#2fc482",
   textPrimary: "#ffffff",
   textSecondary: "#383838",
-  textTertiary: "#242424",
+  textTertiary: "#4e4e4e",
 };

@@ -50,18 +50,30 @@ export default createGlobalStyle`
     font-size: 4rem;
     margin: 0;
     margin-bottom: 1rem;
+
+    @media (max-width: 1023px) {
+      font-size: 3.5rem;
+    }
   }
 
   h2 {
     font-size: 3rem;
     margin: 0;
     margin-bottom: 1rem;
+
+    @media (max-width: 1023px) {
+      font-size: 2.5rem;
+    }
   }
 
   h3 {
     font-size: 2rem;
     margin: 0;
     margin-bottom: 1rem;
+
+    @media (max-width: 1023px) {
+      font-size: 1.5rem;
+    }
   }
 
   h4 {
@@ -75,6 +87,7 @@ export default createGlobalStyle`
     line-height: 1.75;
     font-size: 0.9rem;
     color: #7d7d7d;
+    text-align: justify;
   }
 
   hr {
