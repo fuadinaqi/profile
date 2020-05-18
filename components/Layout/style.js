@@ -46,6 +46,7 @@ const fadeIn = keyframes`
 export const UpperMain = styled.div`
   overflow-y: auto;
   width: calc(100% - 50px);
+  padding: 3rem 0;
 `;
 
 export const Main = styled.main`
