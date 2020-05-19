@@ -1,9 +1,12 @@
+import { useState, createContext } from "react";
 import useWindowWidth from "hooks/useWindowWidth";
 import { Wrapper, Helper, Container, UpperMain, Main } from "./style";
 import Sidebar from "./sections/Sidebar";
 import Photo from "./sections/Photo";
 
-function Child({ children }) {
+export const LayoutContext = createContext();
+
+function Child({ withPhoto, children }) {
   const { name } = useWindowWidth();
 
   if (!name) return "";
@@ -11,7 +14,7 @@ function Child({ children }) {
   if (name !== "large") {
     return (
       <UpperMain>
-        <Photo />
+        {withPhoto && <Photo />}
         <Main>{children}</Main>
       </UpperMain>
     );
@@ -26,15 +29,23 @@ function Child({ children }) {
 }
 
 function Layout(props) {
+  const [withPhoto, setWithPhoto] = useState(true);
+
   return (
-    <Wrapper>
-      <Helper>
-        <Container>
-          <Sidebar />
-          <Child {...props} />
-        </Container>
-      </Helper>
-    </Wrapper>
+    <LayoutContext.Provider
+      value={{
+        setWithPhoto,
+      }}
+    >
+      <Wrapper>
+        <Helper>
+          <Container>
+            <Sidebar />
+            <Child withPhoto={withPhoto} {...props} />
+          </Container>
+        </Helper>
+      </Wrapper>
+    </LayoutContext.Provider>
   );
 }
 

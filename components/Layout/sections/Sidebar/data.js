@@ -7,8 +7,8 @@ export const menu = [
     id: "2",
     name: "contact",
   },
-  // {
-  //   id: "3",
-  //   name: "work",
-  // },
+  {
+    id: "3",
+    name: "game",
+  },
 ];
