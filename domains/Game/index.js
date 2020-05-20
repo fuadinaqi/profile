@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Card from "components/ui-kit/Card";
+import Card from "components/ui-kit/Atoms/Card";
 import MathBlocks from "./sections/MathBlocks";
 import { Container } from "./style";
 import { games } from "./data";

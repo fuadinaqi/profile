@@ -1,21 +1,15 @@
-import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Container, BarContainer, BarValue, TitleContainer } from "./style";
+import { Container, TitleContainer } from "./style";
+import Progress from "components/ui-kit/Atoms/Progress";
 
 function ProgressBar({ title, percentage }) {
-  const [value, setValue] = useState(0);
-  useEffect(() => {
-    setValue(percentage);
-  }, []);
   return (
     <Container>
       <TitleContainer>
         <h4>{title}</h4>
         <h4 className="primary">{`${percentage}%`}</h4>
       </TitleContainer>
-      <BarContainer>
-        <BarValue percentage={value} />
-      </BarContainer>
+      <Progress percentage={percentage} />
     </Container>
   );
 }

@@ -1,5 +1,4 @@
-import styled, { keyframes, css } from "styled-components";
-import theme from "theme";
+import styled from "styled-components";
 
 export const Container = styled.div`
   > h3 {
@@ -14,47 +13,30 @@ export const Container = styled.div`
     display: flex;
     margin: 1rem auto;
   }
+
+  > p {
+    transition: 1s;
+    text-align: center;
+  }
+
+  > .percentage {
+    margin: 1em 0;
+  }
+`;
+
+export const P = styled.p`
+  transition: 1s;
+  text-align: center;
+  ${(props) =>
+    props.triggerBig &&
+    `
+    font-size: 5rem;
+    color: #2fc482;
+  `};
 `;
 
 export const BlockContainer = styled.div`
   display: grid;
   grid-template-columns: ${(props) => `repeat(${props.rows}, 1fr)`};
   grid-template-rows: ${(props) => `repeat(${props.rows}, 100px)`};
-`;
-
-function animatedBgColor({ defaultBg, correctBg, wrongBg, correct }) {
-  const currentBg = correct ? correctBg : wrongBg;
-
-  return keyframes`
-    0% {
-      background-color: ${defaultBg};
-    }
-    50% {
-      background-color: ${correct !== undefined ? currentBg : defaultBg};
-    }
-    100% {
-      background-color: ${defaultBg};
-    }
-  `;
-}
-
-export const Block = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  border: solid 1px #ffffff;
-  cursor: pointer;
-  user-select: none;
-  background-color: #000000;
-  animation: 0.5s
-    ${(props) =>
-      animatedBgColor({
-        defaultBg: "#000000",
-        correctBg: theme.primary,
-        wrongBg: "red",
-        correct: props.correct,
-      })}
-    ease-in-out infinite;
-  box-sizing: border-box;
 `;

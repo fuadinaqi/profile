@@ -1,5 +1,5 @@
 import { Container } from "./style";
-import ProgressBar from "components/ui-kit/ProgressBar";
+import ProgressBar from "components/ui-kit/Molecules/ProgressBar";
 import { skills } from "./data";
 
 function ProfileSkill() {
