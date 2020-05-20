@@ -13,8 +13,21 @@ export function shuffle(arr) {
 }
 
 // in miliseconds
-export const time = 2000;
+export const time = {
+  2: 2000,
+  3: 8000,
+};
 
-export function substractPerTime(miliseconds) {
-  return 100 / ((time - 1000) / miliseconds);
+export function substractPerTime(miliseconds, rows) {
+  return 100 / ((time[rows] - 1000) / miliseconds);
+}
+
+export function getInitialHighScore() {
+  if (!localStorage.getItem("highscore")) {
+    return {
+      2: 0,
+      3: 0,
+    };
+  }
+  return JSON.parse(localStorage.getItem("highscore"));
 }

@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import Button from "components/ui-kit/Atoms/Button";
 import Progress from "components/ui-kit/Atoms/Progress";
 import Blocks from "./Blocks";
 import { keys } from "./data";
 import { Container, BlockContainer, P } from "./style";
-import { shuffle, time, substractPerTime } from "./utils";
+import { shuffle, time, substractPerTime, getInitialHighScore } from "./utils";
+import NotReadyState from "./NotReadyState";
 
 let timeout_1 = null;
 let timeout_2 = null;
@@ -18,13 +18,15 @@ function MathBlocks({ back, data: { title, description } }) {
   const [preventClick, setPreventClick] = useState(false);
   const [arrayNum, setArrayNum] = useState([]);
   const [answer, setAnswer] = useState(null);
-  const [rows] = useState(2);
+  const [rows, setRows] = useState(2);
   const [level, setLevel] = useState(1);
   const [stage, setStage] = useState(1);
   const [score, setScore] = useState(0);
   const [question, setQuestion] = useState("");
   const [result, setResult] = useState(null);
   const [percentage, setPercentage] = useState(100);
+
+  const [highScore, setHighScore] = useState(getInitialHighScore());
 
   useEffect(() => {
     return () => {
@@ -49,7 +51,7 @@ function MathBlocks({ back, data: { title, description } }) {
     if (ready && stage === 1) {
       interval = setInterval(function () {
         setPercentage((prevPercentage) => {
-          const newPercentage = prevPercentage - substractPerTime(100);
+          const newPercentage = prevPercentage - substractPerTime(100, rows);
           if (newPercentage <= 0) {
             clearInterval(interval);
           }
@@ -58,20 +60,29 @@ function MathBlocks({ back, data: { title, description } }) {
       }, 100);
       timeout_1 = setTimeout(function () {
         setStage((prevStage) => prevStage + 1);
-      }, time);
+      }, time[rows]);
     }
   }, [ready, stage]);
 
   useEffect(() => {
-    if (stage === 3 && level < 8) {
+    if (stage === 3 && level < 10) {
       timeout_2 = setTimeout(function () {
         resetState();
       }, 2000);
-    } else if (stage === 3 && level === 8) {
+    } else if (stage === 3 && level === 10) {
       timeout_3 = setTimeout(() => {
         setEnded(true);
         audioRef.current.src = "/audio/applause.mp3";
         audioRef.current.play();
+        if (score > highScore[rows]) {
+          localStorage.setItem(
+            "highscore",
+            JSON.stringify({
+              ...highScore,
+              [rows]: score,
+            })
+          );
+        }
       }, 3000);
     }
   }, [stage, level]);
@@ -98,6 +109,13 @@ function MathBlocks({ back, data: { title, description } }) {
     };
   }
 
+  function onClickLevel(level) {
+    return function () {
+      setRows(level);
+      setReady(true);
+    };
+  }
+
   return (
     <Container>
       <audio ref={audioRef}>
@@ -106,20 +124,21 @@ function MathBlocks({ back, data: { title, description } }) {
       </audio>
       <h3 role="presentation" onClick={back}>{`< Back`}</h3>
       {!ready ? (
-        <>
-          <h1>{title}</h1>
-          <p>{description}</p>
-          <Button onClick={() => setReady(true)}>Ready ?</Button>
-        </>
+        <NotReadyState
+          title={title}
+          description={description}
+          onClickLevel={onClickLevel}
+          highScore={highScore}
+        />
       ) : (
         <>
           <P triggerBig={ended}>
-            <strong>score : </strong>
+            <strong>skor : </strong>
             <strong>{score}</strong>
           </P>
           {!ended && (
             <>
-              <h2>{stage > 1 ? question : "Recognize this!"}</h2>
+              <h2>{stage > 1 ? question : "Hafalkan!"}</h2>
               {stage === 1 && (
                 <Progress
                   className="percentage"
