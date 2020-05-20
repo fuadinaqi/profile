@@ -6,7 +6,7 @@ export const keys = {
     },
     2: {
       questions: ["25 - 5", "8 - 4", "12 - 6", "15 - 13"],
-      answers: [20, 4, 6, 12],
+      answers: [20, 4, 6, 2],
     },
     3: {
       questions: ["6 x 4", "9 x 9", "6 x 7", "10 x 5"],
