@@ -26,7 +26,7 @@ function MathBlocks({ back, data: { title, description } }) {
   const [result, setResult] = useState(null);
   const [percentage, setPercentage] = useState(100);
 
-  const [highScore, setHighScore] = useState(getInitialHighScore());
+  const [highScore] = useState(getInitialHighScore());
 
   useEffect(() => {
     return () => {
@@ -52,8 +52,9 @@ function MathBlocks({ back, data: { title, description } }) {
       interval = setInterval(function () {
         setPercentage((prevPercentage) => {
           const newPercentage = prevPercentage - substractPerTime(100, rows);
-          if (newPercentage <= 0) {
+          if (newPercentage < 0) {
             clearInterval(interval);
+            return 0;
           }
           return newPercentage;
         });
