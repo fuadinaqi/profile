@@ -9,9 +9,19 @@ export const Container = styled.div`
     text-align: center;
   }
 
-  > button {
+  > .button {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 1rem auto;
+
+    > strong {
+      margin-top: 1rem;
+    }
+  }
+
+  > hr {
+    margin: 1rem 0;
   }
 
   > p {
