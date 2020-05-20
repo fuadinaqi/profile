@@ -13,7 +13,7 @@ export function shuffle(arr) {
 }
 
 // in miliseconds
-export const time = 5000;
+export const time = 2000;
 
 export function substractPerTime(miliseconds) {
   return 100 / ((time - 1000) / miliseconds);
