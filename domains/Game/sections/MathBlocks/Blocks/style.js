@@ -18,6 +18,8 @@ function animatedBgColor({ defaultBg, correctBg, wrongBg, correct }) {
 }
 
 export const Block = styled.div`
+  font-size: 2rem;
+  font-weight: 500;
   display: flex;
   justify-content: center;
   align-items: center;
