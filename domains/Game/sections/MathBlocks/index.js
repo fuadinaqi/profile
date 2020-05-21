@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import Progress from "components/ui-kit/Atoms/Progress";
 import Blocks from "./Blocks";
-import { keys } from "./data";
-import { Container, BlockContainer, P } from "./style";
-import { shuffle, time, substractPerTime, getInitialHighScore } from "./utils";
 import NotReadyState from "./NotReadyState";
+import { levels } from "./data";
+import { shuffle, time, substractPerTime, getInitialHighScore } from "./utils";
+import { Container, BlockContainer, P } from "./style";
 
 let timeout_1 = null;
 let timeout_2 = null;
@@ -18,15 +18,16 @@ function MathBlocks({ back, data: { title, description } }) {
   const [preventClick, setPreventClick] = useState(false);
   const [arrayNum, setArrayNum] = useState([]);
   const [answer, setAnswer] = useState(null);
-  const [rows, setRows] = useState(2);
   const [level, setLevel] = useState(1);
+  const [rows, setRows] = useState(2);
+  const [subLevel, setSubLevel] = useState(1);
   const [stage, setStage] = useState(1);
   const [score, setScore] = useState(0);
   const [question, setQuestion] = useState("");
   const [result, setResult] = useState(null);
   const [percentage, setPercentage] = useState(100);
 
-  const [highScore] = useState(getInitialHighScore());
+  const highScore = getInitialHighScore();
 
   useEffect(() => {
     return () => {
@@ -39,13 +40,13 @@ function MathBlocks({ back, data: { title, description } }) {
 
   useEffect(() => {
     const rowColumns = Math.pow(rows, 2);
-    const currentKey = keys[rows][level];
+    const currentKey = levels[level][rows][subLevel];
     const indexResult = Math.floor(Math.random() * rowColumns);
     setPreventClick(false);
     setArrayNum(shuffle(currentKey.answers));
     setQuestion(currentKey.questions[indexResult]);
     setResult(currentKey.answers[indexResult]);
-  }, [rows, level]);
+  }, [level, rows, subLevel]);
 
   useEffect(() => {
     if (ready && stage === 1) {
@@ -66,31 +67,31 @@ function MathBlocks({ back, data: { title, description } }) {
   }, [ready, stage]);
 
   useEffect(() => {
-    if (stage === 3 && level < 10) {
+    if (stage === 3 && subLevel < 10) {
       timeout_2 = setTimeout(function () {
         resetState();
       }, 2000);
-    } else if (stage === 3 && level === 10) {
+    } else if (stage === 3 && subLevel === 10) {
       timeout_3 = setTimeout(() => {
         setEnded(true);
         audioRef.current.src = "/audio/applause.mp3";
         audioRef.current.play();
-        if (score > highScore[rows]) {
+        if (score > highScore[level]) {
           localStorage.setItem(
             "highscore",
             JSON.stringify({
               ...highScore,
-              [rows]: score,
+              [level]: score,
             })
           );
         }
       }, 3000);
     }
-  }, [stage, level]);
+  }, [stage, subLevel]);
 
   function resetState() {
     setStage(1);
-    setLevel((prevLevel) => prevLevel + 1);
+    setSubLevel((prevLevel) => prevLevel + 1);
     setAnswer("");
     setPercentage(100);
   }
@@ -110,9 +111,10 @@ function MathBlocks({ back, data: { title, description } }) {
     };
   }
 
-  function onClickLevel(level) {
+  function onClickLevel(lvl) {
     return function () {
-      setRows(level);
+      setLevel(lvl);
+      setRows(levels[lvl].rows);
       setReady(true);
     };
   }
