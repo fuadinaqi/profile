@@ -9,7 +9,8 @@ import { Container, BlockContainer, P } from "./style";
 let timeout_1 = null;
 let timeout_2 = null;
 let timeout_3 = null;
-let interval = null;
+let interval_1 = null;
+let interval_2 = null;
 
 function MathBlocks({ back, data: { title, description } }) {
   const audioRef = useRef(null);
@@ -34,7 +35,8 @@ function MathBlocks({ back, data: { title, description } }) {
       clearTimeout(timeout_1);
       clearTimeout(timeout_2);
       clearTimeout(timeout_3);
-      clearInterval(interval);
+      clearInterval(interval_1);
+      clearInterval(interval_2);
     };
   }, []);
 
@@ -50,11 +52,11 @@ function MathBlocks({ back, data: { title, description } }) {
 
   useEffect(() => {
     if (ready && stage === 1) {
-      interval = setInterval(function () {
+      interval_1 = setInterval(function () {
         setPercentage((prevPercentage) => {
-          const newPercentage = prevPercentage - substractPerTime(100, rows);
+          const newPercentage = prevPercentage - substractPerTime(100, time[rows]);
           if (newPercentage < 0) {
-            clearInterval(interval);
+            clearInterval(interval_1);
             return 0;
           }
           return newPercentage;
@@ -63,6 +65,20 @@ function MathBlocks({ back, data: { title, description } }) {
       timeout_1 = setTimeout(function () {
         setStage((prevStage) => prevStage + 1);
       }, time[rows]);
+    } else if (ready && stage === 2) {
+      interval_2 = setInterval(function () {
+        setPercentage((prevPercentage) => {
+          const newPercentage = prevPercentage + substractPerTime(100, 3000);
+          if (newPercentage > 100) {
+            clearInterval(interval_2);
+            return 100;
+          }
+          return newPercentage;
+        });
+      }, 100);
+      timeout_1 = setTimeout(function () {
+        setStage((prevStage) => prevStage + 1);
+      }, 3000);
     }
   }, [ready, stage]);
 
@@ -101,6 +117,7 @@ function MathBlocks({ back, data: { title, description } }) {
       setPreventClick(true);
       setStage((prevStage) => prevStage + 1);
       setAnswer(num);
+      clearTimeout(timeout_1);
       if (num === result) {
         audioRef.current.src = "/audio/correct.mp3";
         setScore((prevScore) => prevScore + 10);
@@ -136,19 +153,15 @@ function MathBlocks({ back, data: { title, description } }) {
       ) : (
         <>
           <P triggerBig={ended}>
+            <strong className="title">{`Math Blocks: Level ${level}`}</strong>
+            <br />
             <strong>skor : </strong>
             <strong>{score}</strong>
           </P>
           {!ended && (
             <>
               <h2>{stage > 1 ? question : "Hafalkan!"}</h2>
-              {stage === 1 && (
-                <Progress
-                  className="percentage"
-                  percentage={percentage}
-                  initialTransition={false}
-                />
-              )}
+              <Progress className="percentage" percentage={percentage} initialTransition={false} />
               <BlockContainer rows={rows}>
                 <Blocks
                   arrayNum={arrayNum}

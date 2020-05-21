@@ -20,8 +20,8 @@ export const time = {
   3: 8000,
 };
 
-export function substractPerTime(miliseconds, rows) {
-  return 100 / ((time[rows] - 1000) / miliseconds);
+export function substractPerTime(miliseconds, t) {
+  return 100 / ((t - 1000) / miliseconds);
 }
 
 export function getInitialHighScore() {
