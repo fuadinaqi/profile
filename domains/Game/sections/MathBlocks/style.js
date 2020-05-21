@@ -42,6 +42,11 @@ export const P = styled.p`
     `
     font-size: 5rem;
     color: #2fc482;
+    line-height: 1;
+
+    > strong.title {
+      font-size: 1rem;
+    }
   `};
 `;
 
