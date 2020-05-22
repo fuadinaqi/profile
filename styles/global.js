@@ -46,6 +46,11 @@ export default createGlobalStyle`
     opacity: 0.3;
   }
 
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
   h1 {
     font-size: 4rem;
     margin: 0;
