@@ -1,183 +1,34 @@
-import { useState, useEffect, useRef } from "react";
-import Progress from "components/ui-kit/Atoms/Progress";
-import Blocks from "./Blocks";
-import NotReadyState from "./NotReadyState";
-import { levels } from "./data";
-import { shuffle, time, substractPerTime, getInitialHighScore } from "./utils";
-import { Container, BlockContainer, P } from "./style";
+import Link from "next/link";
+import Button from "components/ui-kit/Atoms/Button";
+import { getInitialHighScore } from "./utils";
+import { levels, data } from "./data";
+import { Container } from "./style";
 
-let timeout_1 = null;
-let timeout_2 = null;
-let timeout_3 = null;
-let interval_1 = null;
-let interval_2 = null;
+const { title, description } = data;
 
-function MathBlocks({ back, data: { title, description } }) {
-  const audioRef = useRef(null);
-  const [ready, setReady] = useState(false);
-  const [ended, setEnded] = useState(false);
-  const [preventClick, setPreventClick] = useState(false);
-  const [arrayNum, setArrayNum] = useState([]);
-  const [answer, setAnswer] = useState(null);
-  const [level, setLevel] = useState(1);
-  const [rows, setRows] = useState(2);
-  const [subLevel, setSubLevel] = useState(1);
-  const [stage, setStage] = useState(1);
-  const [score, setScore] = useState(0);
-  const [question, setQuestion] = useState("");
-  const [result, setResult] = useState(null);
-  const [percentage, setPercentage] = useState(100);
-
-  const highScore = getInitialHighScore();
-
-  useEffect(() => {
-    return () => {
-      clearTimeout(timeout_1);
-      clearTimeout(timeout_2);
-      clearTimeout(timeout_3);
-      clearInterval(interval_1);
-      clearInterval(interval_2);
-    };
-  }, []);
-
-  useEffect(() => {
-    const rowColumns = Math.pow(rows, 2);
-    const currentKey = levels[level][rows][subLevel];
-    const indexResult = Math.floor(Math.random() * rowColumns);
-    setPreventClick(false);
-    setArrayNum(shuffle(currentKey.answers));
-    setQuestion(currentKey.questions[indexResult]);
-    setResult(currentKey.answers[indexResult]);
-  }, [level, rows, subLevel]);
-
-  useEffect(() => {
-    if (ready && stage === 1) {
-      interval_1 = setInterval(function () {
-        setPercentage((prevPercentage) => {
-          const newPercentage = prevPercentage - substractPerTime(100, time[rows]);
-          if (newPercentage < 0) {
-            clearInterval(interval_1);
-            return 0;
-          }
-          return newPercentage;
-        });
-      }, 100);
-      timeout_1 = setTimeout(function () {
-        setStage((prevStage) => prevStage + 1);
-      }, time[rows]);
-    } else if (ready && stage === 2) {
-      interval_2 = setInterval(function () {
-        setPercentage((prevPercentage) => {
-          const newPercentage = prevPercentage + substractPerTime(100, 3000);
-          if (newPercentage > 100) {
-            clearInterval(interval_2);
-            return 100;
-          }
-          return newPercentage;
-        });
-      }, 100);
-      timeout_1 = setTimeout(function () {
-        setStage((prevStage) => prevStage + 1);
-      }, 3000);
-    }
-  }, [ready, stage]);
-
-  useEffect(() => {
-    if (stage === 3 && subLevel < 10) {
-      timeout_2 = setTimeout(function () {
-        resetState();
-      }, 2000);
-    } else if (stage === 3 && subLevel === 10) {
-      timeout_3 = setTimeout(() => {
-        setEnded(true);
-        audioRef.current.src = "/audio/applause.mp3";
-        audioRef.current.play();
-        if (score > highScore[level]) {
-          localStorage.setItem(
-            "highscore",
-            JSON.stringify({
-              ...highScore,
-              [level]: score,
-            })
-          );
-        }
-      }, 3000);
-    }
-  }, [stage, subLevel]);
-
-  function resetState() {
-    setStage(1);
-    setSubLevel((prevLevel) => prevLevel + 1);
-    setAnswer("");
-    setPercentage(100);
-  }
-
-  function onClickBlock(num) {
-    return function () {
-      setPreventClick(true);
-      setStage((prevStage) => prevStage + 1);
-      setAnswer(num);
-      clearTimeout(timeout_1);
-      if (num === result) {
-        audioRef.current.src = "/audio/correct.mp3";
-        setScore((prevScore) => prevScore + 10);
-      } else {
-        audioRef.current.src = "/audio/wrong.mp3";
-      }
-      audioRef.current.play();
-    };
-  }
-
-  function onClickLevel(lvl) {
-    return function () {
-      setLevel(lvl);
-      setRows(levels[lvl].rows);
-      setReady(true);
-    };
-  }
-
+export default function MathBlocks() {
   return (
     <Container>
-      <audio ref={audioRef}>
-        <source type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-      <h3 role="presentation" onClick={back}>{`< Back`}</h3>
-      {!ready ? (
-        <NotReadyState
-          title={title}
-          description={description}
-          onClickLevel={onClickLevel}
-          highScore={highScore}
-        />
-      ) : (
-        <>
-          <P triggerBig={ended}>
-            <strong className="title">{`Math Blocks: Level ${level}`}</strong>
-            <br />
-            <strong>skor : </strong>
-            <strong>{score}</strong>
-          </P>
-          {!ended && (
-            <>
-              <h2>{stage > 1 ? question : "Hafalkan!"}</h2>
-              <Progress className="percentage" percentage={percentage} initialTransition={false} />
-              <BlockContainer rows={rows}>
-                <Blocks
-                  arrayNum={arrayNum}
-                  stage={stage}
-                  answer={answer}
-                  result={result}
-                  preventClick={preventClick}
-                  onClickBlock={onClickBlock}
-                />
-              </BlockContainer>
-            </>
-          )}
-        </>
-      )}
+      <Link href="/game">
+        <a>
+          <h3>{`< Back`}</h3>
+        </a>
+      </Link>
+      <h1>{title}</h1>
+      <p>{description}</p>
+      {Object.keys(levels).map((level) => (
+        <React.Fragment key={level.toString()}>
+          <div className="button">
+            <Link href="/game/math-blocks/[level]" as={`/game/math-blocks/${level}`}>
+              <a>
+                <Button>{`Level ${level}`}</Button>
+              </a>
+            </Link>
+            <strong>{`Skor tertinggi : ${getInitialHighScore()[level]}`}</strong>
+          </div>
+          <hr />
+        </React.Fragment>
+      ))}
     </Container>
   );
 }
-
-export default MathBlocks;
