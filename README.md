@@ -1,3 +1,5 @@
-Personal Website Fuadi Naqi
+# Personal Website Fuadi Naqi
 
-Powered by Next.js
+### See my website : [fuadinaqi](https://profile.fuadinaqi.now.sh/)
+
+Powered by [Next.js](https://nextjs.org/) and [Vercel](https://vercel.com/)
