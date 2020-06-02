@@ -11,6 +11,6 @@ export const games = [
   {
     href: "/game/color-blocks",
     title: "Color Blocks",
-    description: `Coming soon...`,
+    description: `Kamu harus mencari 1 block warna yang berbeda dengan blok warna lainnya dengan waktu yang ditentukan!`,
   },
 ];
