@@ -26,12 +26,12 @@ export const Container = styled.div`
 `;
 
 export const P = styled.p`
-  transition: 1s;
+  transition: 0.5s;
   text-align: center;
   ${(props) =>
     props.triggerBig &&
     `
-    font-size: 5rem;
+    font-size: 3rem;
     color: #2fc482;
     line-height: 1;
 
@@ -39,6 +39,10 @@ export const P = styled.p`
       font-size: 1rem;
     }
   `};
+
+  > button {
+    margin: 1em auto;
+  }
 `;
 
 export const BlockContainer = styled.div`

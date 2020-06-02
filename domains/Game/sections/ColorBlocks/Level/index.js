@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import Progress from "components/ui-kit/Atoms/Progress";
+import Button from "components/ui-kit/Atoms/Button";
 import { Container, P, BlockContainer, Block } from "./style";
 import { levels } from "../data";
 import { shuffle, substractPerTime, answerTime } from "./utils";
@@ -88,6 +89,10 @@ function ColorBlocksLevel() {
     };
   }
 
+  function onRetry() {
+    Router.reload(window.location.pathname);
+  }
+
   return (
     <Container>
       <Link href="/game/color-blocks">
@@ -100,6 +105,7 @@ function ColorBlocksLevel() {
         <br />
         <strong>skor : </strong>
         <strong>{score}</strong>
+        {ended && <Button onClick={onRetry}>Retry?</Button>}
       </P>
       {!ended && (
         <>
