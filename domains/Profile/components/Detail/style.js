@@ -13,7 +13,7 @@ export const Container = styled.div`
   }
 
   > .titleDesc {
-    color: ${theme.textTertiary};
+    color: #6b9f82;
     margin: 0.5rem 0;
   }
 `;
