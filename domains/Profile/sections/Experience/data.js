@@ -1,6 +1,12 @@
 export const experiences = [
   {
-    year: "April 2018 - Now",
+    year: "December 2021 - Now",
+    title: "Qlue - Smart City Apps",
+    titleDesc: "Lead Frontend Developer",
+    description: "",
+  },
+  {
+    year: "April 2018 - December 2021",
     title: "Qlue - Smart City Apps",
     titleDesc: "Frontend Developer",
     description: `
