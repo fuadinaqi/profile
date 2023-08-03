@@ -12,7 +12,7 @@ export const experiences = [
             href="https://search.hukumonline.com"
             target="_blank"
           >
-            search
+            Search
           </a>
         </li>
         <li>
@@ -22,7 +22,7 @@ export const experiences = [
             href="https://hukumonline.com/pusatdata"
             target="_blank"
           >
-            pusatdata
+            Pusatdata
           </a>
         </li>
         <li>

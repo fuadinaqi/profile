@@ -6,7 +6,7 @@ function Detail({ year, title, titleDesc, description }) {
       <strong>{titleDesc}</strong>
       <h4>{title}</h4>
       <div className="titleDesc">{year}</div>
-      <p>{description}</p>
+      {typeof description === "string" ? <p>{description}</p> : description}
     </Container>
   );
 }
