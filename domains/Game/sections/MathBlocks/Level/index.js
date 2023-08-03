@@ -15,9 +15,8 @@ let interval_1 = null;
 let interval_2 = null;
 
 function MathBlocksLevel() {
-  const {
-    query: { level },
-  } = useRouter();
+  const router = useRouter();
+  const level = router?.query?.level || 1;
   const rows = levels[level].rows;
   const audioRef = useRef(null);
   const [ended, setEnded] = useState(false);
@@ -138,9 +137,7 @@ function MathBlocksLevel() {
         Your browser does not support the audio element.
       </audio>
       <Link href="/game/math-blocks">
-        <a>
-          <h3>{`< Back`}</h3>
-        </a>
+        <h3>{`< Back`}</h3>
       </Link>
       <P triggerBig={ended}>
         <strong className="title">{`Math Blocks: Level ${level}`}</strong>

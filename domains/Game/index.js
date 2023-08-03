@@ -10,12 +10,10 @@ function GameView() {
       <Container>
         {games.map(({ title, description, href }, i) => (
           <Link href={href} key={i.toString()}>
-            <a>
-              <Card width="100%" className="card">
-                <h3>{title}</h3>
-                <p>{description}</p>
-              </Card>
-            </a>
+            <Card width="100%" className="card">
+              <h3>{title}</h3>
+              <p>{description}</p>
+            </Card>
           </Link>
         ))}
       </Container>

@@ -12,9 +12,8 @@ let timeout_1 = null;
 let interval = null;
 
 function ColorBlocksLevel() {
-  const {
-    query: { level },
-  } = useRouter();
+  const router = useRouter();
+  const level = router?.query?.level || 1;
   const rows = levels[level].rows;
   const [ended, setEnded] = useState(false);
   const [score, setScore] = useState(0);
@@ -96,9 +95,7 @@ function ColorBlocksLevel() {
   return (
     <Container>
       <Link href="/game/color-blocks">
-        <a>
-          <h3>{`< Back`}</h3>
-        </a>
+        <h3>{`< Back`}</h3>
       </Link>
       <P triggerBig={ended}>
         <strong className="title">{`Color Blocks: Level ${level}`}</strong>

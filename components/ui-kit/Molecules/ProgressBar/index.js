@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { Container, TitleContainer } from "./style";
 import Progress from "components/ui-kit/Atoms/Progress";
 
@@ -16,11 +15,6 @@ function ProgressBar({ title, percentage }) {
 
 ProgressBar.defaultProps = {
   percentage: 0,
-};
-
-ProgressBar.propTypes = {
-  title: PropTypes.string.isRequired,
-  percentage: PropTypes.number,
 };
 
 export default ProgressBar;

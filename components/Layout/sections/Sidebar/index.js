@@ -26,11 +26,9 @@ function Sidebar() {
           const href = name === "profile" ? "/" : `/${name}`;
           return (
             <Link href={href} key={id}>
-              <a>
-                <MenuItem onClick={onClickMenu(name)}>
-                  <img src={src} alt={name} />
-                </MenuItem>
-              </a>
+              <MenuItem onClick={onClickMenu(name)}>
+                <img src={src} alt={name} />
+              </MenuItem>
             </Link>
           );
         })}

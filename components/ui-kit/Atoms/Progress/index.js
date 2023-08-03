@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { BarContainer, BarValue } from "./style";
 
 function Progress({ initialTransition, percentage, ...props }) {
@@ -13,13 +12,5 @@ function Progress({ initialTransition, percentage, ...props }) {
     </BarContainer>
   );
 }
-
-Progress.defaultProps = {
-  initialTransition: true,
-};
-
-Progress.propTypes = {
-  initialTransition: PropTypes.bool,
-};
 
 export default Progress;

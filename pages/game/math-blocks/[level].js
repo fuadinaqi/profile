@@ -5,9 +5,8 @@ import useWithoutPhoto from "components/Layout/hooks/useWithoutPhoto";
 
 export default function MathBlocks() {
   useWithoutPhoto();
-  const {
-    query: { level },
-  } = useRouter();
+  const router = useRouter();
+  const level = router?.query?.level || 1;
 
   return (
     <>
