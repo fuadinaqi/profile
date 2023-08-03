@@ -7,7 +7,7 @@ function Photo() {
       <ProfileContainer>
         <h1>Fuadi Naqi</h1>
         <div className="text-wrapper">
-          <h3 className="primary">Developer</h3>
+          <h3 className="primary">Frontend Engineer</h3>
         </div>
       </ProfileContainer>
     </Container>

@@ -1,20 +1,70 @@
 export const experiences = [
   {
-    year: "December 2021 - Now",
+    year: "February 2023 - Now",
+    title: "Hukumonline.com",
+    titleDesc: "Senior Frontend Engineer",
+    description: (
+      <ul>
+        <li>
+          Revamp Search Engine UI:{" "}
+          <a
+            style={{ color: "#73ffc1", textDecoration: "underline" }}
+            href="https://search.hukumonline.com"
+            target="_blank"
+          >
+            search
+          </a>
+        </li>
+        <li>
+          Revamp and improve Pusatdata UI:{" "}
+          <a
+            style={{ color: "#73ffc1", textDecoration: "underline" }}
+            href="https://hukumonline.com/pusatdata"
+            target="_blank"
+          >
+            pusatdata
+          </a>
+        </li>
+        <li>
+          Build Ask Hukumonline Beta UI:{" "}
+          <a
+            style={{ color: "#73ffc1", textDecoration: "underline" }}
+            href="https://ask.hukumonline.com"
+            target="_blank"
+          >
+            Ask
+          </a>
+        </li>
+        <li>
+          Initiate to maintain and standardize of Hukumonline's Design System and other shared libs
+        </li>
+      </ul>
+    ),
+  },
+  {
+    year: "December 2021 - February 2023",
     title: "Qlue - Smart City Apps",
     titleDesc: "Lead Frontend Developer",
-    description: "",
+    description: `
+      Lead and manage Frontend team to build a web application from scratch using React.ts with various technologies such as React.ts for the UI library,
+      Nx for monorepo, React leaflet for making maps, SSE for Realtime technology, and many others for its all products or projects
+    `,
   },
   {
     year: "April 2018 - December 2021",
     title: "Qlue - Smart City Apps",
     titleDesc: "Frontend Developer",
-    description: `
-      Qlue was established in 2014 in Jakarta, working side by side with Jakarta Government in implementing the first Smart City concept in Indonesia.
-      In the 4-year cooperation with Jakarta Government, the province and its citizens have seen tangible results, such as reducing potential flood points
-      by 94%, improving government performance by 61.4%, and increasing public trust to the government by 47%. As a result of these achievements, Qlue
-      received multiple awards, including Finalists of Startup World Cup, Supporter of SDGs No.16 by JCIM, and Global Smart City Contest winner by World
-      Smart City Organization in London and the Best M-Government Service Award from the World Government Summit in Dubai (2019).
-    `,
+    description: (
+      <div>
+        <p>Create and maintain a Dashboard Web for Qlue's core product</p>
+        <ul>
+          <li>Build UI Components for core design system</li>
+          <li>
+            Contribute to create architecture for the folder structure, routes, and coding rules
+          </li>
+          <li>Integrate to Backend's API</li>
+        </ul>
+      </div>
+    ),
   },
 ];

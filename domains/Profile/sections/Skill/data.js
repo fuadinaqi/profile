@@ -1,31 +1,43 @@
 export const skills = [
   {
+    name: "Typescript",
+    percentage: 92,
+  },
+  {
     name: "Javascript",
-    percentage: 90,
-  },
-  {
-    name: "HTML5",
-    percentage: 79,
-  },
-  {
-    name: "Cascading Style Sheets (CSS)",
-    percentage: 83,
+    percentage: 92,
   },
   {
     name: "React js",
-    percentage: 87,
+    percentage: 90,
   },
   {
-    name: "React native",
-    percentage: 72,
+    name: "Nextjs",
+    percentage: 88,
+  },
+  {
+    name: "HTML5",
+    percentage: 85,
+  },
+  {
+    name: "Cascading Style Sheets (CSS)",
+    percentage: 85,
+  },
+  {
+    name: "Angular",
+    percentage: 80,
+  },
+  {
+    name: "Node js",
+    percentage: 78,
   },
   {
     name: "Vue js",
     percentage: 75,
   },
   {
-    name: "Node js",
-    percentage: 78,
+    name: "React native",
+    percentage: 72,
   },
   {
     name: "Express js",
@@ -33,7 +45,7 @@ export const skills = [
   },
   {
     name: "MongoDB",
-    percentage: 80,
+    percentage: 71,
   },
   {
     name: "MySQL",

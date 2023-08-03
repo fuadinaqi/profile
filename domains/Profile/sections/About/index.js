@@ -9,12 +9,15 @@ function ProfileAbout() {
         <span>/</span>
         <em>Indonesia</em>
         <span>/</span>
-        <em>Developer</em>
+        <em>Frontend</em>
       </strong>
       <p>
-        Professional Programmer. Data technology, IoT, Machine Learning, AR, and VR enthusiast. Fast
-        Learner. A Full-stack javascript developer who have certified skills in NodeJS, ES5, ES6,
-        VueJS, Vuex, ReactJS, React-Native, Redux, RESTful-API NodeJS by Hacktiv8 Indonesia.
+        I am a Frontend Engineer who adheres to the principles of S.O.L.I.D (Single Responsibility,
+        Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion). I have
+        experience in small and big things related to Frontend Engineering. I easily work with teams
+        with various methods (Agile or Waterfall method). The Frontend's UI Builder that I'm very
+        good at is the React.ts library, but some of my projects use other frameworks like Vue.js
+        and Angular.
       </p>
     </Container>
   );
