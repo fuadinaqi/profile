@@ -126,6 +126,7 @@ function MathBlocksLevel() {
       } else {
         audioRef.current.src = "/audio/wrong.mp3";
       }
+      audioRef.current.volume = 0.01;
       audioRef.current.play();
     };
   }
