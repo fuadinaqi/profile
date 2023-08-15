@@ -12,7 +12,6 @@ export const Container = styled.div`
   > img {
     opacity: 0.4;
     position: relative;
-    left: -125px;
   }
 
   @media (max-width: 1024px) {
@@ -24,8 +23,10 @@ export const Container = styled.div`
     margin: 0 auto;
 
     > img {
-      position: unset;
-      left: 0;
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      background: #434f30;
     }
   }
 `;

@@ -5,7 +5,7 @@ export const experiences = [
     titleDesc: "Senior Frontend Engineer",
     description: (
       <ul>
-        <li>
+        <li className="titleDesc">
           Revamp Search Engine UI:{" "}
           <a
             style={{ color: "#73ffc1", textDecoration: "underline" }}
@@ -15,7 +15,7 @@ export const experiences = [
             Search
           </a>
         </li>
-        <li>
+        <li className="titleDesc">
           Revamp and improve Pusatdata UI:{" "}
           <a
             style={{ color: "#73ffc1", textDecoration: "underline" }}
@@ -25,7 +25,7 @@ export const experiences = [
             Pusatdata
           </a>
         </li>
-        <li>
+        <li className="titleDesc">
           Build Ask Hukumonline Beta UI:{" "}
           <a
             style={{ color: "#73ffc1", textDecoration: "underline" }}
@@ -35,7 +35,7 @@ export const experiences = [
             Ask
           </a>
         </li>
-        <li>
+        <li className="titleDesc">
           Initiate to maintain and standardize of Hukumonline's Design System and other shared libs
         </li>
       </ul>
@@ -58,11 +58,11 @@ export const experiences = [
       <div>
         <p>Create and maintain a Dashboard Web for Qlue's core product</p>
         <ul>
-          <li>Build UI Components for core design system</li>
-          <li>
+          <li className="titleDesc">Build UI Components for core design system</li>
+          <li className="titleDesc">
             Contribute to create architecture for the folder structure, routes, and coding rules
           </li>
-          <li>Integrate to Backend's API</li>
+          <li className="titleDesc">Integrate to Backend's API</li>
         </ul>
       </div>
     ),
